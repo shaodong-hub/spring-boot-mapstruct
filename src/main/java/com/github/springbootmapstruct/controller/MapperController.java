@@ -1,12 +1,15 @@
 package com.github.springbootmapstruct.controller;
 
-import cn.hy.mapstruct.mapper.UserMapper1;
-import cn.hy.mapstruct.mapper.UserMapper2;
-import cn.hy.mapstruct.pojo.UserDO;
-import cn.hy.mapstruct.pojo.UserPO;
-import cn.hy.mapstruct.pojo.UserVO;
+
+import com.github.springbootmapstruct.mapper.UserMapper1;
+import com.github.springbootmapstruct.mapper.UserMapper2;
+import com.github.springbootmapstruct.pojo.UserDO;
+import com.github.springbootmapstruct.pojo.UserPO;
+import com.github.springbootmapstruct.pojo.UserVO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -22,15 +25,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MapperController {
 
-    // 这个地方用 @Autowired 会报错
-    private final UserMapper1 mapper1;
+    /**
+     * 这个地方用 @Autowired 会报错
+     */
+    @Resource
+    private UserMapper1 mapper1;
 
-    private final UserMapper2 mapper2;
-
-    public MapperController(UserMapper1 mapper1, UserMapper2 mapper2) {
-        this.mapper1 = mapper1;
-        this.mapper2 = mapper2;
-    }
+    @Resource
+    private UserMapper2 mapper2;
 
     @GetMapping("/tuple")
     public UserVO getUserVO1() {
@@ -43,7 +45,6 @@ public class MapperController {
         userPO.setName("userPO");
         userPO.setInfo("userPO");
         userPO.setAge(19);
-
 
         return mapper1.from(userDO, userPO);
     }

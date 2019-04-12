@@ -25,10 +25,17 @@ public interface UserMapper1 {
 
     UserMapper1 MAPPER = Mappers.getMapper(UserMapper1.class);
 
+    /**
+     * 从第一个对象和第二个对象中提取出 UserVO 对象
+     *
+     * @param userDO 第一个对象
+     * @param userPO 第二个对象
+     * @return UserVO
+     */
     @Mappings({
-        @Mapping(source = "userDO.name", target = "name"),
-        @Mapping(source = "userPO.info", target = "info"),
-        @Mapping(source = "userPO.age", target = "age")
+            @Mapping(source = "userDO.name", target = "name"),
+            @Mapping(source = "userPO.info", target = "info"),
+            @Mapping(source = "userPO.age", target = "age")
     })
     UserVO from(UserDO userDO, UserPO userPO);
 

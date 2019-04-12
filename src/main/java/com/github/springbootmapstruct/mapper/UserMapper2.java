@@ -24,9 +24,15 @@ public interface UserMapper2 {
 
     UserMapper2 MAPPER = Mappers.getMapper(UserMapper2.class);
 
+    /**
+     * 从源对象中提取相应的元素到目标对象中
+     *
+     * @param userDO 源对象
+     * @return UserVO
+     */
     @Mappings({
-        @Mapping(source = "name", target = "name"),
-        @Mapping(source = "number", target = "number")
+            @Mapping(source = "name", target = "name"),
+            @Mapping(source = "number", target = "number")
     })
     UserVO from(UserDO userDO);
 
